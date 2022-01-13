@@ -1,0 +1,198 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- For google icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+    <title>Autenticar</title>
+    
+    <style>
+
+
+        ::placeholder {
+        color: white;
+        opacity: 1; /* Firefox */
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .background {
+            background: url('../static/assets/banner.jpg') rgba(0, 0, 0, 0.61);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-blend-mode: darken;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            min-height: 800px;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: transparent(255, 255, 255, 0.233);
+            box-shadow: 0 0 20px rgb(255, 255, 255);
+            border-radius: 15px;
+            width: 600px;
+            margin: 10vh auto;
+        }
+
+        form {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            width: 85%;
+        }
+
+        .form-item {
+            display: flex;
+            width: 90%;
+            background: transparent;
+            margin: 10px auto;
+            align-items: center;
+            border-radius: 15px;
+            border-bottom: 1px solid rgb(255, 255, 255);
+        }
+
+        input {
+            font-size: 18px;
+            width: 80%;
+            height: 30px;
+            outline: none;
+            background: transparent;
+            border: none;
+            margin: auto;
+            color: white;
+        }
+
+        span {
+            margin: 5px;
+            color: rgb(255, 255, 255);
+            cursor: default;
+            user-select: none;
+            background: rgba(85, 81, 81, 0.637);
+            padding: 5px;
+            border-radius: 15px;
+        }
+
+        button[type="submit"] {
+            width: 300px;
+            font-size: 15px;
+            margin: 10px auto;
+            padding: 10px 16px;
+            color: white;
+            background: rgba(122, 123, 116, 0.72);
+            border: none;
+            text-align: center;
+        }
+
+        button {
+            padding: 5px 16px;
+            font-size: 18px;
+            margin: 5px 15px;
+            width: 180px;
+            color: white;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.7s ease;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}  
+          {% if category == 'error' %}  
+          <div class="alert alert-danger alter-dismissable fade show" role="alert">
+            {{ message }}
+            <buton type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </buton>
+          </div>
+          {% else %}
+          <div class="alert alert-success alter-dismissable fade show" role="alert">
+            {{ message }}
+            <buton type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </buton>
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="background"></div>
+    <div class="container">
+        <h2>Login</h2>
+        <h4>Trying to connect to: {{ url }}</h4>
+        <form method='POST'>
+            <div class="form-item">
+                <span class="material-icons-outlined">account_circle</span>
+                {% if password != None %}
+                <input type="text" name="username" id="text" placeholder="Enter email" value="{{username}}" required>
+                {% else %}
+                <input type="text" name="username" id="text" placeholder="Enter email" required>
+                {% endif %}
+            </div>
+            <div class="form-item">
+                <span class="material-icons-outlined">lock</span>
+                {% if password != None %}
+                <input type="password" name="password" id="pass" placeholder="Enter password" value="{{password}}" required>
+                {% else %}
+                <input type="password" name="password" id="pass" placeholder="Enter password" required>
+                {% endif %}
+            </div>
+        
+            <input type="checkbox" id="save" name="save" value="1">
+            <label for="save">Save Credentials to Database</label><br>
+        
+            <button type="submit"> Autenticar </button>
+        </form>
+
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+</body>
+
+</html>
+

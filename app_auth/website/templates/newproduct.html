@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title%}Add new product{% endblock %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    <h1 align="center">Add new product:</h1>
+    <div class="form-group">
+    <label for="name">Name:</label>
+    <input
+        type="text"
+        class="form-control"
+        id="product_name"
+        name="product_name"
+        placeholder="Product Name"
+        required
+    />
+    </div>
+    <div class="form-group">
+    <label for="description">Description:</label>
+    <input
+        type="text"
+        class="form-control"
+        id="product_description"
+        name="product_description"
+        placeholder="Product Description"
+        required
+    />
+    </div>
+    <div class="form-group">
+    <label for="cost">Cost:</label>
+    <input
+        type="number"
+        min="1"
+        class="form-control"
+        id="product_cost"
+        name="product_cost"
+        placeholder="Product Cost"
+        required
+    />
+    </div>
+    <div class="form-group">
+    <label for="quantity">Quantity:</label>
+    <input
+        type="number"
+        min="1"
+        class="form-control"
+        id="product_quantity"
+        name="product_quantity"
+        placeholder="Product Quantity"
+        required
+    />
+    </div>
+    
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input
+            type="file"
+            min="1"
+            class="form-control"
+            id="product_image"
+            name="product_image"
+            accept="image/png, image/gif, image/jpeg"
+            required
+        />
+        </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+</form>
+{% endblock %}
